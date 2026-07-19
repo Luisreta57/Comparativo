@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparativo Q3 2026 vs Q3 2025 · Inteligencia de Negocio Mercado Público Chile</title>
+<style>
+:root{
+  --bd-orange:#F26722;
+  --bd-orange-dark:#D2540E;
+  --bd-orange-light:#F79A55;
+  --bd-blue:#1546C8;
+  --bd-blue-deep:#0E2FA0;
+  --bd-navy:#1E1B5E;
+  --bd-sky:#9DBCEA;
+  --bd-sky-light:#E4ECF9;
+  --ink:#1A1A1A;
+  --dark-bg:#1E1B5E;
+  --paper:#FFFFFF;
+  --tbl-head:#E9EAEC;
+  --tbl-line:#C9CDD3;
+  --muted:#5C6674;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+  background:var(--dark-bg);color:var(--ink);overflow:hidden;
+}
+.deck{position:relative;width:100%;height:100vh;height:100dvh}
+.slide{
+  position:absolute;inset:0;background:var(--paper);
+  display:flex;flex-direction:column;
+  padding:clamp(22px,4.5vh,48px) clamp(22px,5vw,76px) clamp(70px,12vh,100px);
+  opacity:0;visibility:hidden;transform:translateX(28px);
+  transition:opacity .45s ease,transform .45s ease,visibility .45s;
+  overflow:hidden;
+}
+.slide.active{opacity:1;visibility:visible;transform:translateX(0)}
+.slide.prev{transform:translateX(-28px)}
+
+/* ---------- ola naranja decorativa (esquina sup. derecha, láminas de contenido) ---------- */
+.wave-corner{
+  position:absolute;top:0;right:0;width:clamp(220px,30vw,420px);height:auto;
+  pointer-events:none;z-index:0;
+}
+/* ---------- cinta ondulada (portada y cierre) ---------- */
+.ribbon{
+  position:absolute;left:0;right:0;width:100%;height:auto;pointer-events:none;z-index:0;
+}
+.slide > *{position:relative;z-index:1}
+.slide > .wave-corner,.slide > .ribbon{z-index:0}
+
+/* ---------- número de página ---------- */
+.pageno{
+  position:absolute;bottom:clamp(52px,9vh,70px);right:clamp(22px,4vw,50px);
+  font-size:clamp(11px,1.2vw,14px);color:var(--muted);font-weight:600;z-index:2;
+}
+.cover .pageno,.closing .pageno{color:#8B93A3}
+
+/* ---------- portada ---------- */
+.cover{background:var(--bd-orange);color:#FFFFFF;justify-content:flex-start;padding:0}
+.cover .pill{
+  position:absolute;left:0;top:0;height:72%;width:74%;
+  background:linear-gradient(120deg,var(--bd-blue-deep) 0%,var(--bd-blue) 55%,#2B5CE0 100%);
+  border-radius:0 0 clamp(160px,22vw,340px) 0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(22px,4.5vh,48px) clamp(26px,6vw,86px);
+  z-index:1;
+}
+.cover h1{
+  font-size:clamp(34px,6.4vw,84px);font-weight:600;line-height:1.02;
+  text-transform:uppercase;letter-spacing:.015em;
+}
+.cover h1 small{display:block;font-size:.52em;font-weight:400;letter-spacing:.02em;margin-top:6px}
+.cover .sub{
+  margin-top:clamp(20px,4.5vh,44px);font-size:clamp(14px,1.9vw,23px);font-weight:500;color:#EFF3FB;
+}
+.cover .date{
+  margin-top:8px;font-size:clamp(13px,1.7vw,21px);font-weight:400;color:#EFF3FB;
+}
+.cover .band{
+  position:absolute;left:0;right:0;bottom:0;height:28%;
+  background:var(--bd-navy);z-index:0;overflow:hidden;
+}
+.cover .band .bub1{
+  position:absolute;left:26%;top:0;width:52%;height:200%;
+  background:var(--bd-sky);border-radius:999px;opacity:.95;
+}
+.cover .band .bub2{
+  position:absolute;right:-6%;top:28%;width:30%;height:200%;
+  background:var(--bd-sky-light);border-radius:999px;
+}
+.cover .bdlogo{
+  position:absolute;left:clamp(26px,6vw,86px);bottom:9%;z-index:2;
+  display:flex;align-items:center;gap:10px;color:#FFFFFF;
+  font-size:clamp(24px,3.4vw,44px);font-weight:700;letter-spacing:.01em;
+}
+.cover .bdlogo svg{width:1.05em;height:1.05em}
+.cover .hint{position:absolute;bottom:9px;left:clamp(26px,6vw,86px);font-size:11px;color:#8FA5D8;z-index:2}
+
+/* ---------- láminas de contenido ---------- */
+h2{
+  font-size:clamp(22px,3.2vw,38px);font-weight:800;color:var(--bd-blue);
+  text-transform:uppercase;letter-spacing:.01em;line-height:1.08;
+  margin-bottom:clamp(14px,2.6vh,28px);max-width:75%;
+}
+h2.small{font-size:clamp(17px,2.2vw,26px);font-weight:700}
+.content{flex:1;min-height:0;display:flex;flex-direction:column}
+
+/* ---------- tablas estilo pivot ---------- */
+.tbl-wrap{
+  flex:1;min-height:0;overflow:auto;align-self:stretch;
+  border:1px solid var(--tbl-line);
+}
+table{width:100%;border-collapse:collapse;font-size:clamp(10px,1.1vw,13px)}
+th,td{border:1px solid var(--tbl-line);padding:clamp(5px,1vh,9px) clamp(6px,.85vw,11px);white-space:nowrap}
+thead th{
+  background:var(--bd-blue);color:#FFFFFF;font-weight:700;
+  text-align:right;position:sticky;top:0;z-index:2;
+  font-size:clamp(9.5px,1.05vw,12.5px);
+}
+thead th.l{text-align:left}
+thead tr.grp th{text-align:center;background:var(--bd-blue-deep)}
+tbody td{text-align:right;font-variant-numeric:tabular-nums}
+tbody td:first-child{text-align:left;font-weight:600}
+tbody td.yr{text-align:center;font-weight:600}
+tbody tr.hl td{background:#FDEEE2}
+tbody tr.hl td:first-child{color:var(--bd-orange-dark)}
+tbody tr:nth-child(even):not(.hl) td{background:#F7F8F9}
+.neg{color:#C0392B;font-weight:700}
+.posv{color:#0F8A5F;font-weight:700}
+.flatv{color:var(--muted);font-weight:700}
+
+/* ---------- viñeta de comentario ---------- */
+.bullet{
+  margin-top:clamp(12px,2.2vh,22px);
+  font-size:clamp(12.5px,1.5vw,17px);line-height:1.55;color:var(--ink);
+  padding-left:1.2em;position:relative;max-width:95%;
+}
+.bullet::before{content:'•';position:absolute;left:.2em;color:var(--bd-orange);font-weight:800}
+.bullet b{font-weight:700}
+
+/* ---------- cierre ---------- */
+.closing{background:var(--paper);justify-content:center;align-items:center}
+.closing h2{
+  font-size:clamp(46px,8vw,110px);text-transform:none;margin:0;max-width:none;color:var(--bd-navy);
+  position:relative;z-index:1;
+}
+.closing h2 u{
+  text-decoration:none;
+  background-image:linear-gradient(90deg,var(--bd-orange),var(--bd-orange) 60%,var(--bd-blue) 60%);
+  background-repeat:no-repeat;background-size:100% .09em;background-position:0 96%;
+}
+.footband{
+  position:absolute;left:0;right:0;bottom:0;height:clamp(46px,8vh,64px);
+  background:#E3E4E8;z-index:0;overflow:hidden;
+}
+.footband .fb-orange{
+  position:absolute;left:0;top:0;bottom:0;width:34%;
+  background:var(--bd-orange);border-radius:0 999px 999px 0;
+}
+.footband .fb-navy{
+  position:absolute;left:0;top:0;bottom:0;width:11%;
+  background:var(--bd-navy);border-radius:0 999px 999px 0;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:700;font-size:clamp(13px,1.6vw,19px);gap:5px;
+}
+.footband .fb-navy svg{width:1em;height:1em}
+
+/* ---------- navegación ---------- */
+.nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:flex-end;gap:clamp(12px,2vw,22px);
+  height:clamp(46px,8vh,64px);
+  padding:0 clamp(14px,3vw,38px);pointer-events:none;
+}
+.nav *{pointer-events:auto}
+.dots{display:flex;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;background:#9AA1AC;border:none;cursor:pointer;transition:.25s;padding:0}
+.dot.on{background:var(--bd-orange);transform:scale(1.4)}
+.arrows{display:flex;gap:8px}
+.abtn{
+  width:34px;height:34px;border-radius:9px;border:1px solid #C7CDD5;
+  background:#FFFFFF;color:var(--ink);cursor:pointer;font-size:15px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;transition:.2s;
+}
+.abtn:hover{background:var(--bd-blue);color:#fff;border-color:var(--bd-blue)}
+.pager{font-family:Consolas,monospace;font-size:12px;color:#3E4550;font-weight:700}
+.progress{position:fixed;top:0;left:0;height:4px;background:var(--bd-orange);z-index:60;transition:width .45s ease}
+body.dark-slide .abtn{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#EAEDF2}
+body.dark-slide .abtn:hover{background:var(--bd-orange);border-color:var(--bd-orange)}
+body.dark-slide .pager{color:#B9C4DC}
+body.dark-slide .dot{background:#3B4354}
+body.dark-slide .dot.on{background:var(--bd-orange)}
+
+@media (max-width:900px){
+  h2{max-width:100%}
+  .wave-corner{width:180px;opacity:.9}
+  .tbl-wrap{flex:none;max-height:62vh}
+}
+@media (prefers-reduced-motion:reduce){
+  .slide{transition:opacity .2s}
+}
+@media print{
+  body{overflow:visible;background:#fff}
+  .slide{position:relative;inset:auto;opacity:1;visibility:visible;transform:none;height:100vh;page-break-after:always}
+  .nav,.progress,.hint{display:none}
+}
+</style>
+</head>
+<body class="dark-slide">
+<div class="progress" id="progress"></div>
+
+<!-- SVG reutilizables: cinta ondulada naranja -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="gradRibbon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C85E10"/>
+      <stop offset=".45" stop-color="#F07822"/>
+      <stop offset="1" stop-color="#F79A55"/>
+    </linearGradient>
+    <linearGradient id="gradRibbon2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F79A55"/>
+      <stop offset="1" stop-color="#F07822"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="deck" id="deck">
+
+  <!-- 1 · PORTADA -->
+  <section class="slide cover active">
+    <div class="pill">
+      <h1>Comparativo<small>Q3 2026 vs&nbsp; Q3 2025</small></h1>
+      <div class="sub">Inteligencia De Negocio Mercado Público Chile</div>
+      <div class="date">Julio 2026</div>
+    </div>
+    <div class="band">
+      <div class="bub1"></div>
+      <div class="bub2"></div>
+    </div>
+    <div class="bdlogo">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l1.8 5.2 4.4-3.4-1.4 5.3 5.5-.6-4 3.7 5 2.3-5.4 1.2 3.2 4.5-5.2-1.9.4 5.5-3.7-4.1-2.3 5-1.2-5.4-4.5 3.2 1.9-5.2-5.5.4 4.1-3.7-5-2.3 5.4-1.2L2.3 4.9l5.2 1.9L7.1 1.3l3.7 4.1z"/><circle cx="12" cy="12" r="3.4" fill="var(--bd-navy)"/></svg>
+      <span>BD</span>
+    </div>
+    <div class="hint">→ flechas del teclado, botones o deslizar para navegar</div>
+    <div class="pageno">1</div>
+  </section>
+
+  <!-- 2 · CATETERES Q3 VS Q3 -->
+  <section class="slide">
+    <svg class="wave-corner" viewBox="0 0 420 150" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,30 C110,-10 220,70 420,10 L420,0 L0,0 Z" fill="url(#gradRibbon)"/>
+      <path d="M40,55 C160,10 260,85 420,35 L420,12 C260,68 160,-2 40,42 Z" fill="url(#gradRibbon2)" opacity=".6"/>
+    </svg>
+    <h2>Cateteres Q3 vs Q3</h2>
+    <div class="content">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr class="grp"><th class="l">Suma de Total</th><th colspan="6">AÑO BD</th></tr>
+            <tr>
+              <th class="l">Nombre Proveedor General</th>
+              <th>2025</th><th>Part(%)</th><th>2026</th><th>Part(%)</th><th>Total general</th><th>Var(+/−)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>B BRAUN</td><td>$357.228.200</td><td>29,97%</td><td>$349.075.150</td><td>35,62%</td><td>$706.303.350</td><td class="neg">−2,3%</td></tr>
+            <tr class="hl"><td>BD (I+D)</td><td>$347.328.699</td><td>29,14%</td><td>$347.438.569</td><td>35,45%</td><td>$694.767.268</td><td class="flatv">0,0%</td></tr>
+            <tr><td>CENCOMEX</td><td>$154.969.120</td><td>13,00%</td><td>$120.979.100</td><td>12,34%</td><td>$275.948.220</td><td class="neg">−21,9%</td></tr>
+            <tr><td>NIPRO</td><td>$135.940.811</td><td>11,41%</td><td>$71.345.216</td><td>7,28%</td><td>$207.286.027</td><td class="neg">−47,5%</td></tr>
+            <tr><td>COMERCIAL LBF</td><td>$74.179.960</td><td>6,22%</td><td>$53.730.775</td><td>5,48%</td><td>$127.910.735</td><td class="neg">−27,6%</td></tr>
+            <tr><td>REUTTER</td><td>$55.283.282</td><td>4,64%</td><td>$13.205.603</td><td>1,35%</td><td>$68.488.885</td><td class="neg">−76,1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bullet">El Mercado se contrae en valor, <b>BD logra sostener sus ventas y aumentar significativamente su participación de mercado</b>.</div>
+    </div>
+    <div class="footband">
+      <div class="fb-orange"></div>
+      <div class="fb-navy"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l1.8 5.2 4.4-3.4-1.4 5.3 5.5-.6-4 3.7 5 2.3-5.4 1.2 3.2 4.5-5.2-1.9.4 5.5-3.7-4.1-2.3 5-1.2-5.4-4.5 3.2 1.9-5.2-5.5.4 4.1-3.7-5-2.3 5.4-1.2L2.3 4.9l5.2 1.9L7.1 1.3l3.7 4.1z"/></svg>BD</div>
+    </div>
+    <div class="pageno">2</div>
+  </section>
+
+  <!-- 3 · CATETERES ACUMULADO 2026 -->
+  <section class="slide">
+    <svg class="wave-corner" viewBox="0 0 420 150" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,30 C110,-10 220,70 420,10 L420,0 L0,0 Z" fill="url(#gradRibbon)"/>
+      <path d="M40,55 C160,10 260,85 420,35 L420,12 C260,68 160,-2 40,42 Z" fill="url(#gradRibbon2)" opacity=".6"/>
+    </svg>
+    <h2>Cateteres Acumulado 2026</h2>
+    <div class="content">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr class="grp"><th class="l">Suma de Total</th><th colspan="4">AÑO BD</th></tr>
+            <tr>
+              <th class="l">Nombre Proveedor General</th>
+              <th>Suma de Total</th><th>PU Promedio</th><th>Part(%)</th><th>Suma de Unidades</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hl"><td>BD (I+D)</td><td>$1.324.790.892</td><td>$1.682</td><td>38,13%</td><td>2.201.222</td></tr>
+            <tr><td>B BRAUN</td><td>$1.177.701.460</td><td>$732</td><td>33,89%</td><td>1.801.203</td></tr>
+            <tr><td>CENCOMEX</td><td>$398.788.180</td><td>$427</td><td>11,48%</td><td>945.168</td></tr>
+            <tr><td>NIPRO</td><td>$215.112.388</td><td>$364</td><td>6,19%</td><td>576.841</td></tr>
+            <tr><td>COMERCIAL LBF</td><td>$173.004.983</td><td>$274</td><td>4,98%</td><td>702.400</td></tr>
+            <tr><td>REUTTER</td><td>$95.196.777</td><td>$236</td><td>2,74%</td><td>409.250</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bullet"><b>BD se posiciona como líder del mercado de catéteres tanto en ventas como en participación</b>.</div>
+    </div>
+    <div class="footband">
+      <div class="fb-orange"></div>
+      <div class="fb-navy"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l1.8 5.2 4.4-3.4-1.4 5.3 5.5-.6-4 3.7 5 2.3-5.4 1.2 3.2 4.5-5.2-1.9.4 5.5-3.7-4.1-2.3 5-1.2-5.4-4.5 3.2 1.9-5.2-5.5.4 4.1-3.7-5-2.3 5.4-1.2L2.3 4.9l5.2 1.9L7.1 1.3l3.7 4.1z"/></svg>BD</div>
+    </div>
+    <div class="pageno">3</div>
+  </section>
+
+  <!-- 4 · COMPARATIVO CANAL DE VENTAS -->
+  <section class="slide">
+    <svg class="wave-corner" viewBox="0 0 420 150" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,30 C110,-10 220,70 420,10 L420,0 L0,0 Z" fill="url(#gradRibbon)"/>
+      <path d="M40,55 C160,10 260,85 420,35 L420,12 C260,68 160,-2 40,42 Z" fill="url(#gradRibbon2)" opacity=".6"/>
+    </svg>
+    <h2 class="small">Comparativo Canal de Ventas</h2>
+    <div class="content">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr class="grp">
+              <th class="l" rowspan="2" style="vertical-align:bottom">Nombre Proveedor General</th>
+              <th rowspan="2" style="vertical-align:bottom">Año</th>
+              <th colspan="2">Compra Ágil</th>
+              <th colspan="2">Convenio Marco</th>
+              <th colspan="2">Licitación Pública</th>
+              <th colspan="2">Trato Directo</th>
+              <th rowspan="2" style="vertical-align:bottom">Total<br>Suma de Total</th>
+              <th rowspan="2" style="vertical-align:bottom">Total<br>Part(%)</th>
+            </tr>
+            <tr>
+              <th>Suma de Total</th><th>Part(%)</th>
+              <th>Suma de Total</th><th>Part(%)</th>
+              <th>Suma de Total</th><th>Part(%)</th>
+              <th>Suma de Total</th><th>Part(%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hl"><td>BD (I+D)</td><td class="yr">2026</td><td>$193.991.927</td><td>14,64%</td><td>$590.543.945</td><td>44,58%</td><td>$472.513.660</td><td>35,67%</td><td>$67.741.360</td><td>5,11%</td><td>$1.324.790.892</td><td>100,00%</td></tr>
+            <tr><td>B BRAUN</td><td class="yr">2026</td><td>$82.864.300</td><td>7,04%</td><td>$332.541.150</td><td>28,24%</td><td>$761.718.860</td><td>64,68%</td><td>$577.150</td><td>0,05%</td><td>$1.177.701.460</td><td>100,00%</td></tr>
+            <tr class="hl"><td>BD (I+D)</td><td class="yr">2025</td><td>$278.575.550</td><td>23,35%</td><td>$401.956.859</td><td>33,69%</td><td>$426.667.818</td><td>35,77%</td><td>$85.766.200</td><td>7,19%</td><td>$1.192.966.427</td><td>100,00%</td></tr>
+            <tr><td>B BRAUN</td><td class="yr">2025</td><td>$181.488.100</td><td>17,62%</td><td>$0</td><td>0,00%</td><td>$818.048.368</td><td>79,42%</td><td>$30.554.650</td><td>2,97%</td><td>$1.030.091.118</td><td>100,00%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bullet"><b>BD presenta un crecimiento real impulsado principalmente por CM</b>, manteniendo estable su desempeño en Licitaciones.</div>
+      <div class="bullet">B Braun reduce significativamente su participación de licitaciones, compensado por el aumento en CM.</div>
+    </div>
+    <div class="footband">
+      <div class="fb-orange"></div>
+      <div class="fb-navy"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l1.8 5.2 4.4-3.4-1.4 5.3 5.5-.6-4 3.7 5 2.3-5.4 1.2 3.2 4.5-5.2-1.9.4 5.5-3.7-4.1-2.3 5-1.2-5.4-4.5 3.2 1.9-5.2-5.5.4 4.1-3.7-5-2.3 5.4-1.2L2.3 4.9l5.2 1.9L7.1 1.3l3.7 4.1z"/></svg>BD</div>
+    </div>
+    <div class="pageno">4</div>
+  </section>
+
+  <!-- 5 · GRACIAS -->
+  <section class="slide closing">
+    <h2><u>Gracias</u>!!!</h2>
+    <div class="footband">
+      <div class="fb-orange"></div>
+      <div class="fb-navy"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l1.8 5.2 4.4-3.4-1.4 5.3 5.5-.6-4 3.7 5 2.3-5.4 1.2 3.2 4.5-5.2-1.9.4 5.5-3.7-4.1-2.3 5-1.2-5.4-4.5 3.2 1.9-5.2-5.5.4 4.1-3.7-5-2.3 5.4-1.2L2.3 4.9l5.2 1.9L7.1 1.3l3.7 4.1z"/></svg>BD</div>
+    </div>
+    <div class="pageno">5</div>
+  </section>
+
+</div>
+
+<div class="nav" id="nav">
+  <span class="pager" id="pager">1 / 5</span>
+  <div class="dots" id="dots"></div>
+  <div class="arrows">
+    <button class="abtn" id="prev" aria-label="Anterior">←</button>
+    <button class="abtn" id="next" aria-label="Siguiente">→</button>
+  </div>
+</div>
+
+<script>
+var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+var cur=0;
+var dots=document.getElementById('dots');
+slides.forEach(function(_,i){
+  var d=document.createElement('button');
+  d.className='dot'+(i===0?' on':'');
+  d.setAttribute('aria-label','Ir a lámina '+(i+1));
+  d.onclick=function(){go(i);};
+  dots.appendChild(d);
+});
+function go(n){
+  if(n<0||n>=slides.length)return;
+  slides[cur].classList.remove('active');
+  cur=n;
+  slides.forEach(function(s,i){ s.classList.toggle('prev',i<cur); });
+  slides[cur].classList.add('active');
+  var ds=document.querySelectorAll('.dot');
+  for(var i=0;i<ds.length;i++) ds[i].classList.toggle('on',i===cur);
+  document.getElementById('pager').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('progress').style.width=((cur+1)/slides.length*100)+'%';
+  document.body.classList.toggle('dark-slide',slides[cur].classList.contains('cover'));
+}
+document.getElementById('next').onclick=function(){go(cur+1);};
+document.getElementById('prev').onclick=function(){go(cur-1);};
+window.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(cur+1);}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1);}
+  if(e.key==='Home')go(0);
+  if(e.key==='End')go(slides.length-1);
+});
+var tx=null;
+window.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+window.addEventListener('touchend',function(e){
+  if(tx===null)return;
+  var dx=e.changedTouches[0].clientX-tx;
+  if(Math.abs(dx)>60)go(cur+(dx<0?1:-1));
+  tx=null;
+},{passive:true});
+document.getElementById('progress').style.width=(1/slides.length*100)+'%';
+</script>
+</body>
+</html>
